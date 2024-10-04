@@ -1,5 +1,6 @@
 package com.piece;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -36,6 +37,24 @@ public class Piece {
 
     private int getX(int col) {
         return col * Board.SQUARE_SIZE;
+    }
+
+    public int getCol(int x) {
+        return (x + Board.HALF_SQUARE_SIZE) / Board.SQUARE_SIZE;
+    }
+
+    public int getrow(int y) {
+        return (y + Board.HALF_SQUARE_SIZE) / Board.SQUARE_SIZE;
+    }
+    public void updatePosition(){
+        x = getX(col);
+        y = getY(row);
+        preCol = getCol(x);
+        preRow = getrow(y);
+    }
+
+    public void draw(Graphics2D g2) {
+        g2.drawImage(image, x, y, Board.SQUARE_SIZE, Board.SQUARE_SIZE, null);
     }
 
 }
